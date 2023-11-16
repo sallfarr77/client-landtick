@@ -1,0 +1,8 @@
+# Ignore development files and directories
+node_modules/
+
+# Ignore version control files
+.git/
+.gitignore
+LICENSE
+

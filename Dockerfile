@@ -1,20 +1,17 @@
-# Set the base image to Node 16 (distroless)
-FROM node:latest
+FROM node:lts
 
-# Set the working directory inside the container
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json files to the working directory in the container
 COPY package*.json ./
 
-# Install dependencies
 RUN npm install
 
-# Copy the rest of the project files
 COPY . .
 
-# Expose the port that the Vite development server will listen on
+RUN npm run build
+
 EXPOSE 5173
 
-# Start the Vite development server
+ENV NODE_ENV=production
+
 CMD ["npm", "run", "host", "--", "--host", "0.0.0.0"]
